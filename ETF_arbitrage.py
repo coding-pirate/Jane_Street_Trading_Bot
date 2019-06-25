@@ -1,10 +1,5 @@
 x`#!/usr/bin/python
 
-# ~~~~~==============   HOW TO RUN   ==============~~~~~
-# 1) Configure things in CONFIGURATION section
-# 2) Change permissions: chmod +x bot.py
-# 3) Run in loop: while true; do ./bot.py; sleep 1; done
-
 from __future__ import print_function
 
 import sys
@@ -14,16 +9,9 @@ import time
 from random import randint as random
 
 # ~~~~~============== CONFIGURATION  ==============~~~~~
-# replace REPLACEME with your team name!
 team_name="FLASHBOYS"
-# This variable dictates whether or not the bot is connecting to the prod
-# or test exchange. Be careful with this switch!
 test_mode = False
 
-# This setting changes which test exchange is connected to.
-# 0 is prod-like
-# 1 is slower
-# 2 is empty
 test_exchange_index=0
 prod_exchange_hostname="production"
 
@@ -44,9 +32,6 @@ def read_from_exchange(exchange):
 
 # ~~~~~============== MAIN LOOP ==============~~~~~
 exchange = connect()
-
-# if ((10*ETF) - (3*BONDS + 2*GS + 3*MS + 2*WCF) >=10):
-
 
 # def max_demanded_commodity(x, max_demand_sofar):
 #     stock_to_sell = ""
