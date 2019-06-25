@@ -33,31 +33,6 @@ def read_from_exchange(exchange):
 # ~~~~~============== MAIN LOOP ==============~~~~~
 exchange = connect()
 
-# def max_demanded_commodity(x, max_demand_sofar):
-#     stock_to_sell = ""
-#     total_demand = 0
-#     if 'book' in x :
-#         for each_entry in x['buy']:
-#             total_demand = total_demand + each_entry[1]
-#             if total_demand > max_demand_sofar:
-#                 max_demand_sofar = total_demand      
-#                 stock_to_sell = x['symbol']
-#     return(stock_to_sell)
-
-# def max_supply_commodity(x, max_supply_sofar):
-
-    # stock_to_buy = ""       
-    # total_supply = 0
- 
-    # if 'book' in x:
-    #     for each_entry in x['sell']:
-    #         total_supply = total_supply + each_entry[1]
-    #         if total_supply > max_supply_sofar:
-    #             max_supply_sofar = total_supply      
-    #             stock_to_buy = x['symbol']
- 
-    # return(stock_to_buy)
-
 def main():
     write_to_exchange(exchange,{"type": "hello", "team": "FLASHBOYS"})
     
