@@ -38,59 +38,62 @@ exchange = connect()
 def main():
     write_to_exchange(exchange,{"type": "hello", "team": "FLASHBOYS"})
     
-    XLF_price = 0
-    GS_price = 0
-    MS_price = 0
-    WFC_price = 0
-    BOND_price = 0
+    com_prices = np.empty(5)
+   
+    def buy(name, price, size):
+        write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": name, "dir": "BUY", "price": price, "size": size})
+
+    def sell(name, price, size):
+        write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": name, "dir": "SELL", "price": price, "size": size})
+
+    buy_switch = {0 : buy('XLF', least_price - 1, random(1,10)) ,
+              1 : buy('GS', least_price - 1, random(1,10) )
+              2 : buy('MS', least_price - 1, random(1,10) )
+              3 : buy('WFC', least_price - 1, random(1,10) 
+              4 : buy('BOND', least_price - 1, random(1,10) )) }
+    
+    def buy_switcher(i):
+        buy_switch[i]
+
+    sell_switch = {0 : buy('XLF', most_price + 1, random(1,10)) ,
+              1 : buy('GS', most_price + 1, random(1,10) )
+              2 : buy('MS', most_price + 1, random(1,10) )
+              3 : buy('WFC', most_price + 1, random(1,10) 
+              4 : buy('BOND', most_price + 1, random(1,10) )) }
+    
+    def sell_switcher(i):
+        sell_switch[i]
+
+
 
     while True:
         dic = read_from_exchange(exchange)
+
         
-        if dic['type'] == 'trade' and dic['symbol'] == 'XLF':
-            XLF_price = dic['price']
-    
-        if dic['type'] == 'trade' and dic['symbol'] == 'GS'  :
-            GS_price = dic['price']
-    
-        if dic['type'] == 'trade' and dic['symbol'] == 'MS'  :
-            MS_price = dic['price']
-    
-        if dic['type'] == 'trade' and dic['symbol'] == 'WFC'  :
-            WFC_price = dic['price']
-    
-        if dic['type'] == 'trade'  and dic['symbol'] == 'BOND'  :
-            BOND_price = dic['price']
+        if dic['type'] == 'trade' :
+            if dic['symbol'] == 'XLF':
+                com_prices[0] = dic['price']
+            elif dic['symbol'] == 'GS'  :
+                com_prices[1] = dic['price']
+            elif dic['symbol'] == 'MS'  :
+                com_prices[2] = dic['price']
+            elif dic['symbol'] == 'WFC'  :
+                com_prices[3] = dic['price']
+            elif dic['symbol'] == 'BOND'  :
+                com_prices[4] = dic['price']
+
+                    
+
         
-        if ((10*XLF_price) - (3*BOND_price + 2*GS_price + 3*MS_price + 2*WFC_price) >= 10) :
 
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "XLF", "dir": "SELL", "price": XLF_price + 1, "size": 10})
-            
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "BOND", "dir": "BUY", "price": BOND_price - 1, "size": 3})
-            
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "MS", "dir": "BUY", "price": MS_price - 1, "size": 3})
-            
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "GS", "dir": "BUY", "price": GS_price - 1, "size": 2})
-            
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "WFC", "dir": "BUY", "price": WFC_price - 1, "size": 2})
-            
-            print("Trade 1 executed")
+       least_price = np.amin(com_prices)
+       least_index_in_arr = ((np.where(com_prices == least_price))[0])[0]
+       most_price = np.amax(com_prices)
+       most_index_in_arr = ((np.where(com_prices == least_price))[0])[0]
 
-        if ( (3*BOND_price + 2*GS_price + 3*MS_price + 2*WFC_price) - (10*XLF_price) >= 10) :
-
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "XLF", "dir": "BUY", "price": XLF_price - 1 , "size": 10})
-            
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "BOND", "dir": "SELL", "price": BOND_price + 1, "size": 3})
-            
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "MS", "dir": "SELL", "price": MS_price + 1, "size": 3})
-            
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "GS", "dir": "SELL", "price": GS_price + 1 , "size": 2})
-            
-            write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "WFC", "dir": "SELL", "price": WFC_price + 1, "size": 2})
-            
-            print("Trade 2 executed")
-    
-    
+       if com_prices.size == 5:
+           sell_switcher(most_index_in_arr)
+           buy_switcher(least_index_in_arr)
 
 if __name__ == "__main__":
     main()
