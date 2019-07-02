@@ -94,11 +94,11 @@ def main():
     def buy_switcher(i):
         buy_switch[i]
 
-    sell_switch = {0 : buy('XLF', most_price + 1, random(1,10)) ,
-              1 : buy('GS', most_price + 1, random(1,10) )
-              2 : buy('MS', most_price + 1, random(1,10) )
-              3 : buy('WFC', most_price + 1, random(1,10) 
-              4 : buy('BOND', most_price + 1, random(1,10) )) }
+    sell_switch = {0 : sell('XLF', most_price + 1, random(1,10)) ,
+              1 : sell('GS', most_price + 1, random(1,10) )
+              2 : sell('MS', most_price + 1, random(1,10) )
+              3 : sell('WFC', most_price + 1, random(1,10) 
+              4 : sell('BOND', most_price + 1, random(1,10) )) }
     
     def sell_switcher(i):
         sell_switch[i]
