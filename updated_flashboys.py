@@ -46,34 +46,6 @@ def read_from_exchange(exchange):
 # ~~~~~============== MAIN LOOP ==============~~~~~
 exchange = connect()
 
-# if ((10*ETF) - (3*BONDS + 2*GS + 3*MS + 2*WCF) >=10):
-
-
-# def max_demanded_commodity(x, max_demand_sofar):
-#     stock_to_sell = ""
-#     total_demand = 0
-#     if 'book' in x :
-#         for each_entry in x['buy']:
-#             total_demand = total_demand + each_entry[1]
-#             if total_demand > max_demand_sofar:
-#                 max_demand_sofar = total_demand      
-#                 stock_to_sell = x['symbol']
-#     return(stock_to_sell)
-
-# def max_supply_commodity(x, max_supply_sofar):
-
-    # stock_to_buy = ""       
-    # total_supply = 0
- 
-    # if 'book' in x:
-    #     for each_entry in x['sell']:
-    #         total_supply = total_supply + each_entry[1]
-    #         if total_supply > max_supply_sofar:
-    #             max_supply_sofar = total_supply      
-    #             stock_to_buy = x['symbol']
- 
-    # return(stock_to_buy)
-
 def main():
     write_to_exchange(exchange,{"type": "hello", "team": "FLASHBOYS"})
     
@@ -134,53 +106,6 @@ def main():
            sell_switcher(most_index_in_arr)
            buy_switcher(least_index_in_arr)
 
-
-
-
-
-
-
-    
-    
-        
-    
-    #     if XLF_price :
-
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "XLF", "dir": "SELL", "price": random(XLF_price + 1000, XLF_price + 100000), "size": 10})
-        
-    #     if BOND_price :    
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "BOND", "dir": "BUY", "price": random(BOND_price - 1000, BOND_price - 100), "size": 3})
-        
-    #     if MS_price :    
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "MS", "dir": "BUY", "price": random(MS_price - 1000, MS_price - 100), "size": 3})
-
-    #     if GS_price:    
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "GS", "dir": "BUY", "price": random(GS_price - 1000, GS_price - 100), "size": 2})
-        
-    #     if WFC_price:    
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "WFC", "dir": "BUY", "price": random(WFC_price - 1000, WFC_price - 100), "size": 2})
-            
-            
-
-        
-    #     if XLF_price :
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "XLF", "dir": "BUY", "price": random(XLF_price - 1000, XLF_price - 100) , "size": 10})
-        
-    #     if BOND_price:   
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "BOND", "dir": "SELL", "price": random(BOND_price + 1000, BOND_price + 10000), "size": 3})
-        
-    #     if MS_price:    
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "MS", "dir": "SELL", "price": random(MS_price + 100, MS_price + 10000), "size": 3})
-        
-    #     if GS_price:    
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "GS", "dir": "SELL", "price": random(GS_price + 100, GS_price + 10000), "size": 2})
-        
-    #     if WFC_price:    
-    #         write_to_exchange(exchange, {"type": "add", "order_id": random(100, 400000000000000), "symbol": "WFC", "dir": "SELL", "price": random(WFC_price + 100, WFC_price + 10000), "size": 2})
-            
-    #         print("Trade 2 requested")
-    
-    
 
 if __name__ == "__main__":
     main()
